@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/ava/avatar_3.jpg">
+  <link rel="icon" href="/img/ava/avatar_3.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#1e2470">
+  <meta name="description" content="简单介绍混淆矩阵（Confusion Matrix）的基本概念，包括前置概念分类模型、二元分类问题的混淆矩阵以及相关的公式">
+  <meta name="author" content="Jamie Chan">
+  <meta name="keywords" content="">
+  
+  <title>HCI概念解析：混淆矩阵 - Jam Studio</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Jam Studio</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article/006/cover006.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HCI概念解析：混淆矩阵">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Jamie Chan
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-27 21:43" pubdate>
+        2021年5月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HCI概念解析：混淆矩阵</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="1-分类模型"><a href="#1-分类模型" class="headerlink" title="1 分类模型"></a>1 分类模型</h2><h3 id="1-1-概念阐释"><a href="#1-1-概念阐释" class="headerlink" title="1.1 概念阐释"></a>1.1 概念阐释</h3><p>分类模型：机器学习领域的概念，机器在现有数据中进行学习与训练，从而形成预测新数据类别变量的能力</p>
+<p>分类任务：找到一个函数，把观测值匹配到相关的类和标签上</p>
+<p><strong>[ 对比 ]</strong> 回归模型：预测数值型变量</p>
+<h3 id="1-2-公式阐释"><a href="#1-2-公式阐释" class="headerlink" title="1.2 公式阐释"></a>1.2 公式阐释</h3><p>给定训练数据<img src="https://private.codecogs.com/gif.latex?D%3D%7B%5Cleft%20%5C%7B%20x_i%2Cy_i%5Cright%20%5C%7D%7D%5EN_i" srcset="/img/loading.gif" lazyload alt="D={\left \{ x_i,y_i\right \}}^N_i"></p>
+<p>分类任务将学习一个从输入 <script type="math/tex">x</script> 到输出 <script type="math/tex">y</script> 的映射 <script type="math/tex">f</script> ：</p>
+<p><img src="https://private.codecogs.com/gif.latex?%5Chat%7By%7D%20%3D%20f%28x%29%3Dargmaxp%28y%3Dc%7Cx%2CD%29" srcset="/img/loading.gif" lazyload alt="\hat{y} = f(x)=argmaxp(y=c \mid x,D)">【最大后验估计】</p>
+<p>其中，<script type="math/tex">y</script> 为离散值，其值范围为标签空间：<img src="https://private.codecogs.com/gif.latex?Y%3D%5Cleft%20%5C%7B%201%2C2%2C...%2CC%20%5Cright%20%5C%7D" srcset="/img/loading.gif" lazyload alt="Y=\left \{ 1,2,...,C \right \}"></p>
+<p><script type="math/tex">y=c \mid x</script> 是贝叶斯定理中的后验概率公式</p>
+<h2 id="2-二元分类问题混淆矩阵结构"><a href="#2-二元分类问题混淆矩阵结构" class="headerlink" title="2 二元分类问题混淆矩阵结构"></a>2 二元分类问题混淆矩阵结构</h2><h3 id="2-1-混淆矩阵的概念与构成"><a href="#2-1-混淆矩阵的概念与构成" class="headerlink" title="2.1 混淆矩阵的概念与构成"></a>2.1 混淆矩阵的概念与构成</h3><p><strong>混淆矩阵 [ Confusion Matrix ]</strong> 是数据科学、数据分析和机器学习中总结分类模型预测结果的情形分析表，以矩阵形式将数据进行集中记录，按照 <strong>真实的类别</strong> 与 <strong>分类模型作出的分类判断</strong> 两个标准进行汇总</p>
+<p>混淆矩阵的每一列代表了 <strong>预测类别</strong> ，每一列的总数表示预测为该类别的数据的数目；每一行代表了数据的 <strong>真实归属类别</strong> ，每一行的数据总数表示该类别的数据实例的数目</p>
+<h3 id="2-2-二元分类问题下的混淆矩阵"><a href="#2-2-二元分类问题下的混淆矩阵" class="headerlink" title="2.2 二元分类问题下的混淆矩阵"></a>2.2 二元分类问题下的混淆矩阵</h3><p>二元分类问题：数据集存在肯定类别和否定类别两类记录，而分类模型对记录分类可能作出阳性判断（判断记录属于肯定类别）或阴性判断（判断记录属于否定类别）两种判断</p>
+<p>二元分类问题的混淆矩阵是一个 2  ×  2 的情形分析表，呈现以下 4 组记录的数目：</p>
+<ul>
+<li>作出正确判断的肯定记录 - 真阳性 TP</li>
+<li>作出错误判断的肯定记录 - 假阴性 FN</li>
+<li>作出正确判断的否定记录 - 真阴性 TN</li>
+<li>作出错误判断的否定记录 - 假阳性 FP</li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-026440fdfe0a0a799a135cc534cb61e2_720w.jpg?source=1940ef5c" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>以及附上一张通俗易懂的帮助理解的趣图：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-59689b1fec1f8be953696fc2ad9fc397_720w.jpg?source=1940ef5c" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-3-举个栗子"><a href="#2-3-举个栗子" class="headerlink" title="2.3 举个栗子"></a>2.3 举个栗子</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Predicted class  \  Actual class</th>
+<th style="text-align:center">Cat</th>
+<th style="text-align:center">Dog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Cat</td>
+<td style="text-align:center"><strong>6</strong></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">Dog</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Predicted class  \  Actual class</th>
+<th style="text-align:center">P</th>
+<th style="text-align:center">N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">P</td>
+<td style="text-align:center"><strong>TP</strong></td>
+<td style="text-align:center">FN</td>
+</tr>
+<tr>
+<td style="text-align:center">N</td>
+<td style="text-align:center">FP</td>
+<td style="text-align:center"><strong>TN</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-3-可直接推出的数值"><a href="#2-3-可直接推出的数值" class="headerlink" title="2.3 可直接推出的数值"></a>2.3 可直接推出的数值</h3><h4 id="2-3-1-关于真实数据本身"><a href="#2-3-1-关于真实数据本身" class="headerlink" title="2.3.1 关于真实数据本身"></a>2.3.1 关于真实数据本身</h4><p>数据集中的记录总数 = TP + FP + FN + TN</p>
+<p>数据集中的肯定记录数 = TP + FN</p>
+<p>数据集中的否定记录数 = FP + TN</p>
+<h4 id="2-3-2-关于计算机的分类模型"><a href="#2-3-2-关于计算机的分类模型" class="headerlink" title="2.3.2 关于计算机的分类模型"></a>2.3.2 关于计算机的分类模型</h4><p>分类模型作出阳性判断的记录数 = TP + FP</p>
+<p>分类模型作出阴性判断的记录数 = FN + TN</p>
+<p>分类模型作出正确分类的记录数 = TP + TN</p>
+<p>分类模型作出错误分类的记录数 = FP + FN</p>
+<h3 id="2-4-推导的其他度量值"><a href="#2-4-推导的其他度量值" class="headerlink" title="2.4 推导的其他度量值"></a>2.4 推导的其他度量值</h3><p><strong>准确率 Accuracy</strong> = ( TP + TN ) / ( TP + TN + FN + TN )</p>
+<blockquote>
+<p>表示总样本中预测对了多少</p>
+</blockquote>
+<p><strong>精确率 Precision / PPV - positive predictive value</strong> = TP / ( TP + FP )</p>
+<blockquote>
+<p>判断为正的样本中，实际为正的比例</p>
+</blockquote>
+<p><strong>召回率 查全率 Recall / 灵敏度 Sensitivity / 真阳性率 TPR True Positive Rate</strong> = TP / ( TP + FN )</p>
+<blockquote>
+<p>实际为正的样本中，判断为正的比例</p>
+<p>可以作为避免 <strong>假阴性</strong> 的量化指标</p>
+</blockquote>
+<p><strong>特异度 Specificity / 真阴性率 TNR True Negative Rate</strong> = TN / ( TN + FP )</p>
+<blockquote>
+<p>实际为阴性的样本中，判断为阴性的比例</p>
+<p>可以作为避免 <strong>假阳性</strong> 的量化指标</p>
+</blockquote>
+<p><strong>F1得分 F1-score</strong> = 2 × TP / ( 2 × TP + FP + FN ) </p>
+<blockquote>
+<p>是精确率和召回率的调和平均数</p>
+</blockquote>
+<p>公式大全：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Confusion_matrix">Confusion matrix - Wikipedia</a></p>
+<h2 id="3-分类器的真实性能"><a href="#3-分类器的真实性能" class="headerlink" title="3 分类器的真实性能"></a>3 分类器的真实性能</h2><h3 id="3-1-准确度-×"><a href="#3-1-准确度-×" class="headerlink" title="3.1 准确度 ×"></a>3.1 准确度 ×</h3><p>对于分类器的真实性能，准确性不是可靠的指标，因为如果数据集不平衡（即当不同类别中的观察数具有很大差异时，比如A类95个、B类5个），只看准确性数值将产生误导性结果</p>
+<p>在这种情况下，F1得分甚至更加不可靠</p>
+<h3 id="3-2-约登公式-√"><a href="#3-2-约登公式-√" class="headerlink" title="3.2 约登公式 √"></a>3.2 约登公式 √</h3><p>约登指数消除了这种偏见，并且将0作为乱猜情况下能增加信息量的决定（英语：informed decision）的概率</p>
+<p>约登指数为0的系统或测试不具有任何作用</p>
+<p><strong>约登指数 J</strong> = 灵敏度 + 特异度 − 1</p>
+<h2 id="4-参考资料"><a href="#4-参考资料" class="headerlink" title="4 参考资料"></a>4 参考资料</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27344959/article/details/82824401">机器学习分类模型_- 如风飘荡的男子的博客</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36883196">混淆矩阵是什么意思 - 知乎</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/混淆矩阵">混淆矩阵 - 维基百科</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/混淆矩阵">混淆矩阵 -_百度百科</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="http://sofasofa.io/forum_main_post.php?postid=1000597">什么是混淆矩阵(confusion matrix)-SofaSofa</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/约登指数">约登指数 - 维基百科</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:7" class="footnote-text"><span>一个计算混淆矩阵数据的API：<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html">sklearn.metrics.confusion_matrix</a>
+<a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:8" class="footnote-text"><span>一个简明易懂的教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SJ411x7jH?from=search&amp;seid=12978593607876465063">【机器学习】五分钟搞懂如何评价二分类模型 -_bilibili</a>
+<a href="#fnref:8" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/HCI/">HCI</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92/">人机交互</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章均为原创，转载请标明出处！参考资料标注于文末，如本站内容涉及您的利益，请尽快联系站长删除，感谢理解！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/06/7-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">机器学习基础01 | 成本函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/07/5-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86/">
+                        <span class="hidden-mobile">概率统计基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        twikoo.init({
+          el: '#twikoo',
+          envId: 'jamblog2-1gdb5w0y937e82c7',
+          region: 'ap-shanghai',
+          path: '',
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

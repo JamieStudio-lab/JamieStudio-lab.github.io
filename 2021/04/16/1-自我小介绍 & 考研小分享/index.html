@@ -1,0 +1,657 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/ava/avatar_3.jpg">
+  <link rel="icon" href="/img/ava/avatar_3.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#1e2470">
+  <meta name="description" content="第一篇博客纪念下个人网站成功搭建，以及分享下考研的一点小心得。">
+  <meta name="author" content="Jamie Chan">
+  <meta name="keywords" content="">
+  
+  <title>自我小介绍 &amp; 考研小分享 - Jam Studio</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Jam Studio</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/article/001/001.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="自我小介绍 & 考研小分享">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Jamie Chan
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-16 21:00" pubdate>
+        2021年4月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">自我小介绍 &amp; 考研小分享</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="我是谁"><a href="#我是谁" class="headerlink" title="我是谁"></a>我是谁</h2><p>灯灯灯灯！我是 Jamie ，一个会因为生活缺乏挑战感而难受的人，一个虽然菜但胆子挺大的人。</p>
+<p>去年毅然裸辞跨考，幸亏是一战成硕，弃文从理，入学后的研究领域大概率是人机交互 [ HCI ] ，相关领域的大佬前辈们带带我呀！</p>
+<h2 id="关于建站动机"><a href="#关于建站动机" class="headerlink" title="关于建站动机"></a>关于建站动机</h2><p>其实从去年考研备考的时候，就已经萌生了自己建个网站的想法，毕竟都 0202 年了，怎么能不拥有一个属于自己的炫酷好看的网站呢！今年复试结束之后，终于有时间、有心情“整活”。在肝了 B 站上 10 多个建站攻略之后，我最后跟着 CodeSheep 大哥的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?share_source=copy_web">无坑版视频教程</a> 以及搭配热心网友的弹幕食用，在零基础的情况下把 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo 框架</a> 顺利搭建起来。</p>
+<p>因为初始主题着实有些不忍直视，我又在 B 站大神们的带飞下，入坑了 <a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/">Fluid 主题</a> ，目前部分页面外观仍在施工，不过至少比原来好看得多。接着我又倒腾了一波评论插件 <a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo</a> ，把自己想象中博客里应该有的功能全部装上了。</p>
+<p>接下来会自学一波 Java ，至少入个门，然后进一步探索博客的自定义内容。虽然是静态网站，但这对于个人使用，写写文章、做做笔记已经绰绰有余了。</p>
+<h2 id="博客内容规划"><a href="#博客内容规划" class="headerlink" title="博客内容规划"></a>博客内容规划</h2><ul>
+<li>考研经验分享 [ 交互设计类专业 / 工作党考研 ]</li>
+<li>HCI 相关理论积累（概率统计、机器学习……）</li>
+<li>HCI 优质论文笔记 &amp; 重点部分翻译</li>
+<li>编程语言学习笔记 [ Python / Java ]</li>
+<li>关于生活的碎碎念</li>
+<li>其他的心血来潮</li>
+</ul>
+<h2 id="考研经验杂谈"><a href="#考研经验杂谈" class="headerlink" title="考研经验杂谈"></a>考研经验杂谈</h2><p>网络上关于考研备考过程的经验视频 / 推文 / 帖子数不胜数，关于硕士生涯规划的干货向分享也是不计其数，其中呼吁师弟师妹”加入内卷大军“的论调也似乎略占上风。在这里，我更希望分享一些前置性的心得，毕竟考研这个决定的重要性跟高考没差，是需要投入 2-3 年青春的重大风险投资。</p>
+<p>如果现在正在阅读这篇博客的你也正考虑读研，我十分希望你能够保持理性和独立思考，审慎考虑后再做决定，切忌盲目跟风。</p>
+<h3 id="1-明确考研理由"><a href="#1-明确考研理由" class="headerlink" title="1 明确考研理由"></a>1 明确考研理由</h3><h4 id="1-1-工作党"><a href="#1-1-工作党" class="headerlink" title="1.1 工作党"></a>1.1 工作党</h4><p>说说我发呆的时候想的一些“歪门邪道”，先扔一个函数：</p>
+<script type="math/tex; mode=display">
+f(COP) = IOV^* - SOV - COC > 0 \tag1</script><script type="math/tex; mode=display">
+IOV^*=f(\delta_{salary},Career\:Length,Related\:Gains,...)\tag2</script><script type="math/tex; mode=display">
+COC = f(Corperation\:Condition,Working\:Condition,Physical\:Condition,Career\:Length...)\tag3</script><p>如公式 1 所示，理想状态下，（专硕）读研的 2 年为自己未来创造的 <strong>价值增值 ( Increment of Value ，IOV* )</strong> 至少应大于这 2 年按原职业生涯所能创造的 <strong>价值之和 ( Sum of Value ，SOV )</strong> ，而且 IOV<em> 至少应在未来可预见的 <em>*工作成本 ( Cost of Career ，COC )</em></em> 出现之前回收。</p>
+<ul>
+<li><p>价值增值量：我理解主要是两个方面，一是对当前专业对应的行业的钻研深度和实践能力所带来的主要收入的提升，另一个是副业，也就是当前专业相关的领域的能力掌握所创造的补充价值，如果决定读研，则尽可能多地扩大读研后的价值增值量。</p>
+</li>
+<li><p>工作成本：最显而易见的是健康情况下滑导致的医疗成本，还包括业务变动导致的搬迁成本等等，应综合考虑可见成本和隐藏的潜在成本。</p>
+</li>
+<li>职业生涯长度：即使 读研后的价值增值 = 原计划的价值之和 ，读研的价值依然没有得到体现，反而白白牺牲了 2-3 年（含备考）年轻时期效率较高的工作时间。因此在 COP &gt; 0 的同时，还应进一步按照行业发展前景、企业发展情况、自己的身体状态等因子综合估算自己的 <strong>黄金</strong> 职业生涯长度 和 职业生涯总长度 ，并将其纳入工作成本变量的考量中。</li>
+</ul>
+<p>这是一个很粗糙的“模型”，我表述得蛮意识流，其中的变量也很难精细地量化，不过还是希望能为你的考研决策带来些许更系统的思考。</p>
+<p>对于初入职场的工作党来说，如果你有下面的想法，那么考研是较好的选择：</p>
+<ul>
+<li><strong>转行</strong> 进入薪酬水平更高的领域 → 一般意味着跨专业考研，难度较高，个人不推荐跨专业同时跨校</li>
+<li><strong>晋升</strong> → 选择非全日制硕士，MBA 尤其吃香，前提是自己对职业前景持有积极态度</li>
+</ul>
+<p>反之，以后容易后悔的读研理由则包括：</p>
+<ul>
+<li>身边同事 / 同龄人好多去读了，我也想跟风一战</li>
+<li>同专业升学，能去个给更多钱的公司 → 思考维度不足，例如离开当前企业只是因为企业文化，那很有可能读研后的企业文化依然无法令人满意</li>
+</ul>
+<h4 id="1-2-学生党"><a href="#1-2-学生党" class="headerlink" title="1.2 学生党"></a>1.2 学生党</h4><p>剩余的课业压力 + 大三学年的实习压力 + 大四学年的论文压力，对于学生党来说，时间和精力的分散导致考研备考任务相对繁重。因此，个人建议提早开始备考的时间，或者从大一开始就做足职业生涯规划，下定决心直接努力学好课业，冲保研。</p>
+<p>不过话说回来，具有相对劣势的同时，相对优势也十分显著。学生党在考研时可以承担更大的风险，因此跨考冲击985、211、双一流高校，或是国内排名更前的高校，乃至“双跨“冲击就业前景更好的专业，都可以成为靠前的选择。</p>
+<p>对了，顺便分享一点关于所谓的“薪酬”的思考——</p>
+<p>很多企业在招聘宣传的时候都在说年薪，但年薪并不是计算自己薪酬最合理的方式，更好的计算方法是“时薪”，即 月薪 ÷ 本月总工作小时数 得到的数值，时薪将能反映出当前企业的“性价比”，举个栗子，996 - 10k 和 995 - 9k 你选哪个，反正我选后者（除非对自己身体素质自信），杠就你对2333。</p>
+<h3 id="2-做足身心准备"><a href="#2-做足身心准备" class="headerlink" title="2 做足身心准备"></a>2 做足身心准备</h3><p>考研备考的难度因专业而异，但“一分耕耘一分收获”的道理在考研中是有效的，在作出考研的选择之后，应做足重返高三状态的身体和心理准备。</p>
+<p>身体准备：</p>
+<ul>
+<li>坚持锻炼，在每天或隔天的学习日程中预留一定的锻炼时长，建议以有氧运动为主，避免运动过度</li>
+<li>规律三餐，养好肠胃</li>
+<li>不熬夜不熬夜不熬夜，重要的事情讲三遍，保持稳定的作息时间，将睡眠时长保持在 7 小时以上，为第二天学习养精蓄锐</li>
+</ul>
+<p>心理准备：</p>
+<ul>
+<li>坚持长期主义的思维，不与身边同学同事对比，把每个选择的效果放远到十年后来看</li>
+<li>利用上瘾模型（以后开篇博文细说），给自己多变的奖励，而不是完全靠着所谓的“自律”约束自己，因为大部分人都做不到完全自律</li>
+<li>做题正确率不高的时候，保持正确的心态——现在出错好过最后考试的时候出错，现在每错一道，考试的时候就少错一道</li>
+<li>考前焦虑很大概率会发生，闭上眼睛深呼吸、大喊大叫都是较好的缓解方法</li>
+</ul>
+<h3 id="3-个人备考策略"><a href="#3-个人备考策略" class="headerlink" title="3 个人备考策略"></a>3 个人备考策略</h3><p>这部分并不是我想说的重点，因此简单聊聊少许要点，而不会系统地谈。</p>
+<p>网上各种方法铺天盖地，但请你记住：适合自己的才是最好的，自己探索出来的方法最好，不必完全跟着别人做。</p>
+<h4 id="3-1-综合向"><a href="#3-1-综合向" class="headerlink" title="3.1 综合向"></a>3.1 综合向</h4><ol>
+<li>严格保持规律作息</li>
+<li>营造仪式感</li>
+<li>说滥了的劳逸结合</li>
+</ol>
+<h4 id="3-2-公共课"><a href="#3-2-公共课" class="headerlink" title="3.2 公共课"></a>3.2 公共课</h4><h5 id="3-2-1-政治"><a href="#3-2-1-政治" class="headerlink" title="3.2.1 政治"></a>3.2.1 政治</h5><ol>
+<li>最后的肖四 yyds ，但前期应当先把精讲精练反复多看，把选择题得分拉高</li>
+<li>主观题不要迷信泛泛而谈的“大”模板</li>
+</ol>
+<h5 id="3-2-2-英语"><a href="#3-2-2-英语" class="headerlink" title="3.2.2 英语"></a>3.2.2 英语</h5><ol>
+<li>坚持背单词</li>
+<li>真题迟点再开始刷</li>
+</ol>
+<h4 id="3-3-专业课"><a href="#3-3-专业课" class="headerlink" title="3.3 专业课"></a>3.3 专业课</h4><ul>
+<li>各院校交互设计专业考察内容不同，备考开始时最好先联系师兄师姐咨询他们的经验，包括参考书单、历年真题、学习笔记等内容，减少走弯路。</li>
+<li>部分院校交互设计专业考题变化很大，注意总结真题题型变化趋势，严格按照官网给出的考试范围和参考书目备考。</li>
+<li>真题留到最后两三个月定期严格按照考试时间和时长进行模拟考试，保持好手感。</li>
+<li>看书做好笔记，建议使用软件做笔记，比手写笔记更容易回看、检索，应形成学科理论的思维导图 / 核心主干，便于最后冲刺复习。</li>
+</ul>
+<hr>
+<blockquote>
+<p>先写到这里好了，之后的内容再慢慢更新。</p>
+<p> 真不错，这里就不会像公众号一样，发出去的东西没法大改。</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/">日常记录</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/">交互设计</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%80%83%E7%A0%94%E5%88%86%E4%BA%AB/">考研分享</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章均为原创，转载请标明出处！参考资料标注于文末，如本站内容涉及您的利益，请尽快联系站长删除，感谢理解！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/28/2-%E5%85%83%E7%BB%84%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HCI 概念解析：元组</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        twikoo.init({
+          el: '#twikoo',
+          envId: 'jamblog2-1gdb5w0y937e82c7',
+          region: 'ap-shanghai',
+          path: '',
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
