@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>JavaOOP 01 | 创建对象时的内存分析</title>
+    <link href="/2021/07/22/8-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%97%B6%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/"/>
+    <url>/2021/07/22/8-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%97%B6%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h2 id="对象的创建源码"><a href="#对象的创建源码" class="headerlink" title="对象的创建源码"></a>对象的创建源码</h2><h3 id="类的创建"><a href="#类的创建" class="headerlink" title="类的创建"></a>类的创建</h3><p>首先，创建一个名为 <code>Pet</code> 的类</p><p>其中定义了两个属性 <code>name</code> / <code>age</code> ，以及一个方法 <code>shout()</code></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pet</span></span>&#123;<br>  <br>  <span class="hljs-keyword">public</span> String name;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> age;<br>  <br>  <span class="hljs-comment">// 无参构造</span><br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shout</span><span class="hljs-params">()</span></span>&#123;<br>    System.out.Println(<span class="hljs-string">&quot;woh!&quot;</span>);<br>  &#125;<br>  <br>&#125;<br></code></pre></div></td></tr></table></figure><h3 id="类的调用"><a href="#类的调用" class="headerlink" title="类的调用"></a>类的调用</h3><p>在主方法中调用 <code>Pet</code> 类：</p><p>首先用 new 方法进行实例化，创建 <code>dog</code> 对象；然后将属性 <code>name</code> / <code>age</code> 分别赋值为 “旺财” 和 3</p><p>进一步创建了一个 <code>cat</code> 对象</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">import</span> Pet;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span></span>&#123;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>    <br>  Pet dog = <span class="hljs-keyword">new</span> Pet();<br>  <br>  dog.name = <span class="hljs-string">&quot;旺财&quot;</span>;<br>    dog.age = <span class="hljs-number">3</span>;<br>    dog.shout();<br>    <br>    System.out.Println(dog.name);<br>    System.out.Println(dog.age);<br>    <br>    Pet cat = <span class="hljs-keyword">new</span> Pet();<br>        <br>  &#125;<br>  <br>&#125;<br></code></pre></div></td></tr></table></figure><p>此时，输出结果如下：</p><figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html">woh!<br>旺财<br>3<br></code></pre></div></td></tr></table></figure><p>且对象 <code>cat</code> 的属性为默认值，<code>name</code> / <code>age</code> 分别为 null 和 0</p><h2 id="创建对象过程的内存分析"><a href="#创建对象过程的内存分析" class="headerlink" title="创建对象过程的内存分析"></a>创建对象过程的内存分析</h2><h3 id="分析思路示意图"><a href="#分析思路示意图" class="headerlink" title="分析思路示意图"></a>分析思路示意图</h3><p><img src="https://jamstudio-picgo.oss-cn-guangzhou.aliyuncs.com/img/20210722231156.png" alt=""></p><h3 id="后台内存流程（以-dog-为例）"><a href="#后台内存流程（以-dog-为例）" class="headerlink" title="后台内存流程（以 dog 为例）"></a>后台内存流程（以 dog 为例）</h3><p>注意：“方法区”属于“堆”</p><ol><li>进入“堆”中的方法区，执行 Application 类，常量“旺财”也储存在方法区中</li><li>执行 main() 方法，加载 Pet() 类</li><li>此时，dog 变量名在“栈”中生成，对应“堆”中的内存地址 0x0001，接着映射到“方法区”中的 Pet 类，依次执行常量的赋值、执行方法</li><li>按要求输出数据</li></ol><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://www.bilibili.com/video/BV12J41137hu?p=65&amp;spm_id_from=pageDriver">狂神说Java - bilibili</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>Java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>编程学习</tag>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>机器学习基础01 | 成本函数</title>
     <link href="/2021/07/05/7-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/"/>
     <url>/2021/07/05/7-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/</url>
